@@ -1,0 +1,15 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}
+Add Song
+{% endblock %}
+
+{% block content %}
+<h1>This is add song</h1>
+
+<form method="POST" action="" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form.as_p}}
+  <input type="submit"></input>
+</form>
+{% endblock %}

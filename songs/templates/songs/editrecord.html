@@ -1,0 +1,93 @@
+{% extends 'dashboard/base.html' %}
+
+
+
+
+{% block title %}
+Show Artists
+{% endblock %}
+
+{% block styleAndLink %}
+        {% load static %}
+
+    <link rel="stylesheet" href="{% static 'showsongs/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'showsongs/fonts/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'showsongs/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'showsongs/fonts/fontawesome5-overrides.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="{% static 'showsongs/css/Ludens---Dark-Mode-Admin-Dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'showsongs/css/styles.css' %}">
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    
+<div id="wrapper">
+    {% block navbarcontent %}
+
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion p-0" style="background: linear-gradient(90deg, #232732 0%, #1f232d 100%);">
+            <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="index.html">
+                    <div class="sidebar-brand-icon"></div>
+                </a><img class="logo" src="{% static 'showsongs/img/Lofigen.png' %}">
+                <hr class="sidebar-divider my-0">
+                <ul class="navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item"><a class="nav-link" href="/dashboard/"><i class="fas fa-tachometer-alt"></i><span>&nbsp;Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/dashboard/showsongs"><i class="fas fa-table"></i><span>&nbsp;Songs</span></a></li>
+                    <li class="nav-item"><a class="nav-link " href="/dashboard/showartists"><i class="fas fa-handshake"></i><span>&nbsp;Artists</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html"><i class="fas fa-tasks"></i><span>&nbsp;Hashtags</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="employees.html"><i class="fas fa-users"></i><span>&nbsp;About Us</span></a></li>
+                </ul>
+                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+            </div>
+        </nav>
+
+    {% endblock %}
+
+
+        {% block middlecontent %}
+    <div class="container align-content-center" style="background: linear-gradient(90deg, #232732 0%, #1f232d 100%);" >
+        <form class="justify-content-center editrecordcss" enctype="multipart/form-data"  method = "post">    
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="form-group col-6">
+                    <label class="text-light" for="">Title : </label>
+                    {{ form.title|as_crispy_field}}
+                    
+                    </div>
+                <div class="form-group col-6">
+                    <label class="text-light" for="">Artist :</label>
+                    {{ form.artist|as_crispy_field}}
+        
+                    </div>
+            </div>
+        
+            <div class="row">
+                <div class="form-group col-6">
+                    <label class="text-light" for="">Image :</label>
+                    {{ form.image|as_crispy_field}}
+        
+                </div>
+        
+                <div class="form-group col-6">
+                <label class="text-light" for="">Song :</label>
+                {{ form.song|as_crispy_field }}
+                </div>    
+            </div> 
+            <br>
+            <div class='text-center'>
+                <input type="submit" name="submit" value="Update and Save" class="btn btn-primary">
+            </div>
+        </form>
+        <br>
+        <br>
+     
+    </div>
+    
+    {% endblock %}
+
+{% endblock %}
+

@@ -1,0 +1,168 @@
+{% extends "dashboard/base.html" %}
+
+        
+    {% block styleAndLink %}
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'userinterface/style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400" rel="stylesheet" />
+        <link href="{% static 'searchbar/css/main.css'%}" rel="stylesheet" />
+        {% block link1 %}
+
+        {% endblock %}
+    {% endblock %}
+    
+    {% block title %}
+        
+        User Dashboard
+        
+    {% endblock %}
+    
+
+    {% block content %}
+
+        {% block navbarcontent %}
+            <nav class="nav">
+                <div class="container">
+                    <div class="logo">
+                        <a href="/userinterface/">
+                            Lofigen🎵✨
+                        </a>
+                    </div>
+                    <div id="mainListDiv" class="main_list">
+                        <ul class="navlinks">
+                            <li><a href="/songs/">Songs</a></li>
+                            <li><a href="/hashtags/">Hashtags</a></li>
+                            <li><a href="/aboutus/">About Us</a></li>
+                            {% if user.is_authenticated %}
+                            <h2 class="text-light"> Hello, {{user.username}}</h2>
+                            <li><a href="/accounts/logout"> <i class="fa fa-power-off text-danger" aria-hidden="true"></i> Logout</a></li>
+                            {% else %}
+                                <li><a href="/accounts/logout">Login</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <span class="navTrigger">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </span>
+                </div>
+            </nav>
+        {% endblock %}
+
+        {% block middlecontent %}
+        <section class="home">
+            <div class="container h-100">
+                <div class="d-flex h-100 text-center align-items-center">
+                  <div class="w-100 text-white">
+                    <h1 class="display-3 ">Welcome to Lofi World 
+                       
+                    </h1>
+                    </h1>
+                    <p class="lead mb-0 text-light">Happy Vibing</p>
+                  </div>
+                </div>
+              </div>
+              {% block section1 %}
+
+              {% endblock %}
+        </section>
+        <div style="height:100px">
+            <!-- just to make scrolling effect possible -->
+            <br>
+                <h2 class="myH2"> Made for you </h2>
+           
+        </div>
+
+        <div class="container myP" style="height:1000px">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card bg-dark text-white">
+                        <a href="/Favourites/" >
+                            <img style="height:250px" class="card-img" src="{% static 'musicbanner/musicbanner6.jpg' %}" alt="Card image">
+                        <div class="card-img-overlay">
+                            <div class="container h-100">
+                                <div class="d-flex h-100  align-items-center">
+                                  <div class="w-100 text-white">
+                                    <h1 class="display-4 ">Your Favourites🌟</h1>
+                                    <p class="lead mb-0 text-light">Explore</p>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+    
+                    </a>
+                    
+                </div>
+               </div> 
+            </div>  
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card bg-dark text-white">
+                        <a href="/songs/" >
+                            <img style="height:250px" class="card-img" src="{% static 'musicbanner/musicbanner7.jfif' %}" alt="Card image">
+                        <div class="card-img-overlay">
+                            <div class="container h-100">
+                                <div class="d-flex h-100  align-items-center">
+                                  <div class="w-100 text-white">
+                                    <h1 class="display-4 ">Songs</h1>
+                                    <p class="lead mb-0 text-light">Happy Vibing</p>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </a>
+                </div>
+               </div> 
+            </div>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card bg-dark text-white">
+                        <a href="/artists/" >
+                            <img style="height:250px" class="card-img" src="{% static 'musicbanner/musicbannerbuilding2.gif' %}" alt="Card image">
+                        <div class="card-img-overlay">
+                            <div class="container h-100">
+                                <div class="d-flex h-100  align-items-center">
+                                  <div class="w-100 text-white">
+                                    <h1 class="display-4 ">Artists</h1>
+                                    <p class="lead mb-0 text-light">Happy Vibing</p>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </a>
+                </div>
+               </div> 
+            </div>
+        </div>
+    
+    <!-- Jquery needed -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="{% static 'userinterface/scripts.js' %}"></script>
+    
+    <!-- Function used to shrink nav bar removing paddings and adding black background -->
+        <script>
+            $(window).scroll(function() {
+                if ($(document).scrollTop() > 50) {
+                    $('.nav').addClass('affix');
+                    console.log("OK");
+                } else {
+                    $('.nav').removeClass('affix');
+                }
+            });
+        </script>
+    <!-- partial -->
+      <script  src="{% static 'userinterface/script.js' %}"></script>
+    
+        
+        {% endblock %}
+
+
+    {% endblock %}

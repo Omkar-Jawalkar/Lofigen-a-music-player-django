@@ -1,0 +1,123 @@
+{% extends 'dashboard/base.html' %}
+
+
+{% block title%}
+Display song
+{% endblock %}
+
+{% block styleAndLink %}
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'userinterface/style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400" rel="stylesheet" />
+        <link href="{% static 'searchbar/css/main.css'%}" rel="stylesheet" />
+       {% block link1 %}
+
+         {% load static %}
+        <style>
+            .home2{
+                width: 100%;
+                height: 100vh;
+                background-image: url({% static 'musicbanner/songsbanner5.jpg' %});
+                background-position: center top;
+                background-size:cover;
+
+            } .base-div{
+                background-image: linear-gradient(#373b44,#4286f4)
+            }
+    
+        .card-div{
+            display: flex !important;
+            justify-content: center !important;
+        }
+    
+            .card{
+                padding: 20px;
+            } 
+    
+    
+            .cards-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+    .card img {
+      width: 100%;
+      height: 24em;
+    
+    }
+    .card {
+      box-shadow: 2px 6px 8px 0 rgba(22, 22, 29, 0.18);
+      border-radius: 8px;
+    padding: 15px;
+    }
+        </style>
+    {% endblock %}
+
+{% endblock %}
+
+
+{% block content %}
+
+{% block navbarcontent %}
+            <nav class="nav">
+                <div class="container">
+                    <div class="logo">
+                        <a href="/userinterface/">
+                            Lofigen🎵✨
+                        </a>
+                    </div>
+                    <div id="mainListDiv" class="main_list">
+                        <ul class="navlinks">
+                            <li><a href="/songs/">Songs</a></li>
+                            <li><a href="/hashtags/">Hashtags</a></li>
+                            <li><a href="/aboutus/">About Us</a></li>
+                            {% if user.is_authenticated %}
+                            <h2 class="text-light"> Hello, {{user.username}}</h2>
+                            <li><a href="/accounts/logout"> <i class="fa fa-power-off text-danger" aria-hidden="true"></i> Logout</a></li>
+                            {% else %}
+                                <li><a href="/accounts/logout">Login</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <span class="navTrigger">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </span>
+                </div>
+            </nav>
+        {% endblock %}
+
+
+
+
+{% block middlecontent %}
+        <section class="home2">
+           
+    
+                <div class="row" style="height:170px">
+
+                </div>
+                <div class="card-div">
+                    <div class="card mb-3" style="width: 32rem">
+                      <img class="card-img-top" src="{{i.image.url}}" alt="Card-img" />
+                      <div class="card-body">
+                        <h3 class="card-title">{{i.title}}</h3>
+                        <p class="card-text">{{i.artist}}</p>
+                      </div>
+                      <p>
+                        <audio controls="controls">
+                          <source src="{{ i.song.url }}" type="audio/mpeg" alt="OOPS" />
+                        </audio>
+                      </p>
+                    </div>
+                  </div>
+    
+        </div>
+        </section>
+
+{% endblock %}
+
+{% endblock %}

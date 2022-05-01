@@ -1,0 +1,71 @@
+{% extends 'dashboard/userinterface.html' %}
+
+
+
+    
+    
+    {% block title %}Songs{% endblock %}
+
+    
+
+    {% block link1 %}
+
+         {% load static %}
+        <style>
+            .home1{
+                width: 100%;
+                height: 100vh;
+                background-image: url({% static 'musicbanner/songsbanner3.jpg' %});
+                background-position: center top;
+                background-size:cover;
+
+            }
+            .card-img-top {
+                width: 100%;
+                height: 15vw;
+                object-fit: cover;
+            }
+            .card {
+                padding-left: 0px;
+                padding-right: 0px;
+                box-shadow: 0 0px 20px 0 rgba(0,0,0,0.2);
+                background-color: #d1aac1;
+                transition: 0.3s;
+             }
+        </style>
+    {% endblock %}
+
+
+   {% block middlecontent %}
+
+ 
+    <section class="home1" >
+        <div style="height:200px">
+        </div>
+        <div class="container">
+            <div class="row">
+                {% for song in songs %}
+                <div class="col-4">
+                    <a href="/displaysong/{{song.title}}/">
+                        <div class="card" style="width: 30rem;">
+                            <img  class="card-img-top"  src="{{song.image.url}}" alt="Card image cap">
+                            <div class="card-body">
+                            <h3 class="card-text text-dark text-center">{{song.title}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                  </a>
+                  {% endfor %}
+                </div>
+               
+            </div>
+
+            
+        </div>
+       
+          </div>
+    
+      
+
+    </section>
+   {% endblock %}

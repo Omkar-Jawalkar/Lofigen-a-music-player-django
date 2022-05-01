@@ -1,0 +1,98 @@
+{% extends 'dashboard/base.html' %}
+
+
+
+
+{% block title %}
+Show Artists
+{% endblock %}
+
+{% block styleAndLink %}
+        {% load static %}
+
+    <link rel="stylesheet" href="{% static 'showsongs/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'showsongs/fonts/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'showsongs/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'showsongs/fonts/fontawesome5-overrides.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="{% static 'showsongs/css/Ludens---Dark-Mode-Admin-Dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'showsongs/css/styles.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    
+<div id="wrapper">
+    {% block navbarcontent %}
+
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion p-0" style="background: linear-gradient(90deg, #232732 0%, #1f232d 100%);">
+            <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="index.html">
+                    <div class="sidebar-brand-icon"></div>
+                </a><img class="logo" src="{% static 'showsongs/img/Lofigen.png' %}">
+                <hr class="sidebar-divider my-0">
+                <ul class="navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item"><a class="nav-link" href="/dashboard/"><i class="fas fa-tachometer-alt"></i><span>&nbsp;Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link " href="/dashboard/showsongs"><i class="fas fa-table"></i><span>&nbsp;Songs</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/dashboard/showartists"><i class="fas fa-handshake"></i><span>&nbsp;Artists</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html"><i class="fas fa-tasks"></i><span>&nbsp;Hashtags</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="employees.html"><i class="fas fa-users"></i><span>&nbsp;About Us</span></a></li>
+                </ul>
+                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+            </div>
+        </nav>
+
+    {% endblock %}
+
+    {% block middlecontent %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <form method="get">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <input type="text" name="searchartist" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                    <button type="submit" class="btn btn-outline-primary">search</button>
+                                </div>
+                            </form>
+                            <br>
+                            <h4 class="m-0 font-weight-bold text-primary">Artists</h4>
+                           
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <br>
+          
+        </div>
+        <div class="container">
+           
+            <div class="row">
+                {% for r in result %}
+                <div class="col-4">
+                            <div class="card text-white bg-dark mb-4 ml-4" style="max-width: 18rem;">
+                                <a class="text-light" style="text-decoration:none;" href="/dashboard/showartists/{{r.artist}}/">
+                                <div style="font-size: 30px;" class="card-header bg-success">{{r.artist}} 
+                                    <a href="/deleteartist/{{r.id}}"><i class="fa fa-trash text-danger fa-align-right "   aria-hidden="true"></i></a>
+                                </div>
+                                <div class="card-body">
+                                <h5 class="card-title"> Total Songs : </h5>
+                                <p class="card-text">
+            
+                                </p>
+                                </a>   
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %} 
+                </div>
+            </div> 
+        </div>
+                        
+    {% endblock %}
+
+{% endblock %}
